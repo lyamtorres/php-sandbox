@@ -1,0 +1,7 @@
+{
+    "etudiants":[
+        {"prenom": "John", "nom": "Doe"},
+        {"prenom": "Anna", "nom": "Smith"},
+        {"prenom": "Peter", "nom": "Jones"}
+    ]
+}
