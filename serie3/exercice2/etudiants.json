@@ -1,7 +1,10 @@
 {
     "etudiants":[
-        {"prenom": "John", "nom": "Doe"},
-        {"prenom": "Anna", "nom": "Smith"},
-        {"prenom": "Peter", "nom": "Jones"}
+        {"prenom": "Tanjiro", "nom": "Kamado"},
+        {"prenom": "Nezuko", "nom": "Kamado"},
+        {"prenom": "Zenitsu", "nom": "Agatsuma"},
+        {"prenom": "Inosuke", "nom": "Hashibira"},
+        {"prenom": "Giyu", "nom": "Tomioka"},
+        {"prenom": "Shinobu", "nom": "Kocho"}
     ]
 }

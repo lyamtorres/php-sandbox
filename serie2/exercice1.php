@@ -1,21 +1,36 @@
 <?php
 
     if (filter_has_var(INPUT_POST, 'encrypt')) {
-        $message = $_POST['message'];
-        $key = $_POST['key'];
+        $message = htmlspecialchars($_POST['message']);
+        $key = htmlspecialchars($_POST['key']);
 
-        encrypt($message, $key);
+        if (!empty($message) && !empty($key)) {
+            encrypt($message, $key);
+        } else {
+            echo <<< _html
+                <div class="alert alert-danger">
+                    <strong>Tous les champs doivent être remplis.</strong>
+                </div>
+            _html;
+        }
     }
 
     if (filter_has_var(INPUT_POST, 'decrypt')) {
-        $message = $_POST['message'];
-        $key = $_POST['key'];
+        $message = htmlspecialchars($_POST['message']);
+        $key = htmlspecialchars($_POST['key']);
 
-        decrypt($message, $key);
+        if (!empty($message) && !empty($key)) {
+            decrypt($message, $key);
+        } else {
+            echo <<< _html
+                <div class="alert alert-danger">
+                    <strong>Tous les champs doivent être remplis.</strong>
+                </div>
+            _html;
+        }
     }
 
     function encrypt($message, $key) {
-
         $array = str_split($message);
         $encryptedArray = []; 
         
@@ -27,12 +42,14 @@
         
         $result = implode($encryptedArray);
 
-        echo $result;
-
+        echo <<< _html
+            <div class="alert alert-success">
+                <strong>Mot chiffré: $result</strong>
+            </div>
+        _html;
     }
 
     function decrypt($message, $key) {
-        
         $array = str_split($message);
         $decryptedArray = [];
 
@@ -44,19 +61,33 @@
 
         $result = implode($decryptedArray);
 
-        echo $result;
-
+        echo <<< _html
+            <div class="alert alert-success">
+                <strong>Mot déchiffré: $result</strong>
+            </div>
+        _html;
     }
 
 ?>
-
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <label for="message">Message</label>
-    <input type="text" id="message" name="message"><br><br>
-
-    <label for="key">Clé</label>
-    <input type="text" id="key" name="key"><br><br>
-
-    <button type="submit" name="encrypt">Chiffrer</button>
-    <button type="submit" name="decrypt">Déchiffrer</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="w-25 p-3">
+        <div class="form-group">
+            <label for="message">Message</label>
+            <input type="text" name="message" class="form-control" value="<?php echo isset($_POST['message']) ? $message : ''; ?>">
+        </div><br>
+        <div class="form-group">
+            <label for="key">Clé</label>
+            <input type="number" name="key" min="1" class="form-control" value="<?php echo isset($_POST['key']) ? $key : ''; ?>">
+        </div><br>
+        <button type="submit" name="encrypt" class="btn btn-primary">Chiffrer</button>
+        <button type="submit" name="decrypt" class="btn btn-primary">Déchiffrer</button>
+    </form>
+</div>
+</body>
+</html>
