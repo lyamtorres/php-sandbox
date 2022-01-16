@@ -52,16 +52,15 @@
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center" style="height:100vh">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="w-25 p-3">
-            <div class="form-group">
-                <label for="tokens">Jetons à oter</label>
-                <input type="number" name="tokens" class="form-control" min="1" max="6">
-            </div><br>
-
-            <button type="submit" name="submit" class="btn btn-primary">Envoyer</button>
+    <div class="container">
+        <h2>Zone de jeu</h2>
+        <hr>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <input type="number" name="tokens" class="form-control" min="1" max="6" placeholder="Jetons à oter"><br>
+            <button type="submit" name="submit" class="btn btn-secondary">Soumettre</button>
             <button type="submit" name="close" class="btn btn-secondary">Fermer</button>
         </form>
     </div>

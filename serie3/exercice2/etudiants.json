@@ -1,10 +1,10 @@
 {
     "etudiants":[
-        {"prenom": "Tanjiro", "nom": "Kamado"},
-        {"prenom": "Nezuko", "nom": "Kamado"},
-        {"prenom": "Zenitsu", "nom": "Agatsuma"},
-        {"prenom": "Inosuke", "nom": "Hashibira"},
-        {"prenom": "Giyu", "nom": "Tomioka"},
-        {"prenom": "Shinobu", "nom": "Kocho"}
+        {"prenom": "Noélie", "nom": "Darras"},
+        {"prenom": "Lyam", "nom": "Torres"},
+        {"prenom": "Evan", "nom": "Joubert"},
+        {"prenom": "Aboubacar", "nom": "Toure"},
+        {"prenom": "Eugénie", "nom": "Sheka Kasongo"},
+        {"prenom": "Brice", "nom": "Grivet"}
     ]
 }

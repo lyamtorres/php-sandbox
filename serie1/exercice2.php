@@ -1,55 +1,68 @@
-<?php
-    if (filter_has_var(INPUT_POST, 'submit')) {
-        // Get form data
-        $day = $_POST['day'];
-        $age = $_POST['age'];
-        $isStudent = isset($_POST['student']);
-
-        if ($day == 'mercredi') {
-            echo "Tarif reduit";
-        } elseif ($isStudent == true) {
-            echo "Tarif reduit";
-        } elseif ($age < 18 || $age > 65) {
-            if ($day == "samedi" || $day == "dimanche") {
-                echo "Tarif plein";
-            } else {
-                echo "Tarif reduit";
-            }
-        } else {
-            echo "Tarif plein";
-        }
-    }
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place cinéma</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="day">Jour:</label>
-        <select name="day" id="day">
-            <option value="lundi">Lundi</option>
-            <option value="mardi">Mardi</option>
-            <option value="mercredi">Mercredi</option>
-            <option value="jeudi">Jeudi</option>
-            <option value="vendredi">Vendredi</option>
-            <option value="samedi">Samedi</option>  
-            <option value="dimanche">Dimanche</option>
-        </select><br><br>
+<div class="container">
+    <h2>Tarifs des séances de cinéma</h2>
 
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age"><br><br>
+    <hr>
 
-        <label for="student">Etudiant</label>
-        <input type="checkbox" id="student" name="student"><br><br>
-  
+<form action="" method="post">
 
-        <button type="submit" name="submit">Envoyer</button>
-    </form>
+<?php
+
+//laisser grâce aux issets les valeurs dans chaque case, puis les supprimer des $_POST
+
+	echo '<select class="form-select form-select-lg mb-3" name="jour">';
+	echo '<option value="" selected disabled hidden>Sélectionner un jour</option>';
+	echo '<option value="Lundi" >Lundi</option>';
+	echo '<option value="Mardi" >Mardi</option>';
+	echo '<option value="Mercredi" >Mercredi</option>';
+	echo '<option value="Jeudi" >Jeudi</option>';
+	echo '<option value="Vendredi" >Vendredi</option>';
+	echo '<option value="Samedi" >Samedi</option>';
+	echo '<option value="Dimanche" >Dimanche</option>';
+	echo '</select><br>';
+
+	echo '<input type="number" class="form-control" name="age" value="" min="1" placeholder="Indiquez votre âge"><br>';
+
+	echo '<input type="checkbox" class="form-check-input" name="etudiant">';
+    echo '<label class="form-check-label" for="etudiant">Etudiant</label><br><br>';
+
+	echo '<input type="submit" class="btn btn-success" name="submit" value="Soumettre"><br><br>';
+
+	if (isset($_POST['jour'])) {
+		echo "Jour : " . $_POST['jour'] . "<br>";
+	}
+	if (isset($_POST['etudiant'])) {
+		echo "Etudiant<br>";
+	}
+	if (isset($_POST['age'])) {
+		echo "Age : " . $_POST['age'] . "<br>";
+	}
+
+	if (isset($_POST['jour'])) {
+		if ($_POST['jour'] == "Mercredi" || isset($_POST['etudiant'])) {
+			echo "Prix de la place : Tarif réduit (4€50)";
+		}
+		elseif ($_POST['jour'] != "Mercredi" && !isset($_POST['age'])) {
+			echo "Prix de la place : Plein tarif (7€)";
+		}
+		elseif ($_POST['age'] != null && ($_POST['age'] < "18" || $_POST['age'] > "65") && ($_POST['jour'] != "Samedi" || $_POST['jour'] != "Dimanche")) {
+			echo "Prix de la place : Tarif réduit (4€50)";
+		} else {
+			echo "Prix de la place : Plein tarif (7€)";
+		}
+	} else {
+		echo "Merci de sélectionner un jour";
+	}
+	unset($_POST['jour']);
+	unset($_POST['age']);
+	unset($_POST['etudiant']);
+?>
+
+</form>
+</div>
 </body>
-</html>
