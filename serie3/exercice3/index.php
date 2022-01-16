@@ -1,53 +1,27 @@
 <?php
-
     session_start();
 
     if (isset($_POST['init'])) {
-        $_SESSION["n"] = 25;
-        echo "La partie commence...";
+        $_SESSION['n'] = $_POST['tokens'];
+        header('location: game.php');
     }
-    
-    if (isset($_POST['submit'])) {
-        $value = $_POST['tokens'];
-
-        if ($_POST['tokens'] < 1 || $_POST['tokens'] > 6) {
-            echo "Vous pouvez uniquement ôter entre 1 et 6 jetons.";
-        } else {
-            $result = $_SESSION["n"] - $value;
-            if ($result <= 0 || $result % 7 == 0) {
-                echo "Partie terminée. Lyam gagne !";
-            } else {
-                // Player phase
-                echo "Scott ôte " . $value . " jetons. <br>";
-                $_SESSION["n"] -= $value;
-                echo "Ils restent " . $_SESSION["n"] . " jetons. <br>";
-                echo "... <br>";
-                // Enemy phase
-                $random = rand(1, 6);
-                echo "Jarvis ôte " . $random . " jetons. <br>";
-                $result = $_SESSION["n"] - $random;
-                if ($result <= 0 || $result % 7 == 0) {
-                    echo "Partie terminée. Jarvis gagne !";
-                } else {
-                    $_SESSION["n"] -= $random;
-                    echo "Ils restent " . $_SESSION["n"] . " jetons. <br>";
-                }
-            }
-
-        }
-    }
-
 ?>
 
 <!DOCTYPE html>
 <html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-        <label for="tokens">Jetons à ôter</label>
-        <input type="number" name="tokens" id="tokens">
+    <div class="d-flex justify-content-center align-items-center" style="height:100vh">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="w-25 p-3">
+            <div class="form-group">
+                <label for="tokens">Choisir le nombre total de jetons</label>
+                <input type="number" name="tokens" class="form-control" min="1">
+            </div><br>
 
-        <button type="submit" name="init">Commencer partie</button>
-        <button type="submit" name="submit">Envoyer</button>
-    </form>
+            <button type="submit" name="init" class="btn btn-primary">Commencer partie</button>
+        </form>
+    </div>
 </body>
 </html>
