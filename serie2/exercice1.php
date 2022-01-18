@@ -44,7 +44,7 @@
 
         echo <<< _html
             <div class="alert alert-success">
-                <strong>Mot chiffré: $result</strong>
+                <strong>Mot chiffré : $result</strong>
             </div>
         _html;
     }
@@ -63,7 +63,7 @@
 
         echo <<< _html
             <div class="alert alert-success">
-                <strong>Mot déchiffré: $result</strong>
+                <strong>Mot déchiffré : $result</strong>
             </div>
         _html;
     }
