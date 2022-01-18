@@ -22,7 +22,7 @@
             </div>
             <div class="form-group col-lg-6">
                 <label for="exampleInputPortable1">Portable</label>
-                <input type="number" class="form-control" id="exampleInputEmail1" name="contact" placeholder="Entrer portable">
+                <input type="text" class="form-control" id="exampleInputEmail1" name="contact" placeholder="Entrer portable">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Adresse</label>
