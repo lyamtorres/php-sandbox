@@ -2,7 +2,7 @@
     session_start();
 
     if (isset($_POST['close'])) {
-        header('location: index.php');
+        header('location: serie_3_exo_3.php');
     }
     
     if (isset($_POST['submit'])) {
