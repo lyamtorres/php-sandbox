@@ -1,0 +1,17 @@
+Inclure le script pour la BDD
++ id, mdp
+
+ATTENTION
+Il faut, sur la page, mettre un lien pour créer la base (non vide)
+
+
+Paramètre de connexion : (dans un fichier séparé)
+port=3306
+server=localhost
+db=php
+login=test
+password=test
+
++ base de données pour créer la table : preparer.php
+
++ alimenter la base de données
